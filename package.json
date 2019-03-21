@@ -1,0 +1,31 @@
+{
+  "name": "budget-app",
+  "version": "1.0.0",
+  "description": "Demo budget app built with React",
+  "private": true,
+  "author": "João Bagio",
+  "license": "ISC",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss}'",
+    "lint": "npx eslint . -f table --max-warnings=0",
+    "lint:fix": "npx eslint . --fix"
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "react-scripts": "2.1.5"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.5",
+    "prettier": "^1.16.4"
+  }
+}

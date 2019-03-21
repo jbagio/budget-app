@@ -1,0 +1,7 @@
+.git
+package-lock.json
+package.json
+*.fixtures.json
+.eslintignore
+.gitignore
+.prettierignore
