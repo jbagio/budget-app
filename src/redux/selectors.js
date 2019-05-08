@@ -20,5 +20,7 @@ export const getVisibleExpenses = (
       } else if (sortBy === 'amount') {
         return a.amount < b.amount ? 1 : -1;
       }
+
+      return 1;
     });
 };
