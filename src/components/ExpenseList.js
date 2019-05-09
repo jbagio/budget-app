@@ -1,25 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import ExpenseListItem from './ExpenseListItem';
+import { getVisibleExpenses } from '../redux/selectors';
 
-const ExpenseList = ({ expenses, filters }) => {
+const ExpenseList = ({ expenses }) => {
   return (
     <div>
-      <p>{expenses.length}</p>
-      <p>{filters.text}</p>
+      <h1>Expense list</h1>
+      {expenses.map(expense => (
+        <ExpenseListItem key={expense.id} expense={expense} />
+      ))}
     </div>
   );
 };
 
 ExpenseList.propTypes = {
-  expenses: PropTypes.object,
+  expenses: PropTypes.array,
   filters: PropTypes.object,
 };
 
 const mapStateToProps = state => {
   return {
-    expenses: state.expenses,
-    filters: state.filters,
+    expenses: getVisibleExpenses(state.expenses, state.filters),
   };
 };
+
 export default connect(mapStateToProps)(ExpenseList);

@@ -32,6 +32,7 @@ export const editExpense = (id, updatedExpense) => ({
 });
 
 const initialState = [];
+
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case ADD_EXPENSE:

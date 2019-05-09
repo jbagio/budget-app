@@ -7,15 +7,16 @@ import * as serviceWorker from './serviceWorker';
 import 'normalize.css';
 
 import { addExpense } from './redux/modules/expenses';
-import { setTextFilter } from './redux/modules/filters';
-import { getVisibleExpenses } from './redux/selectors';
 
-store.dispatch(addExpense({ description: 'first expense' }));
-store.dispatch(addExpense({ description: 'second expense' }));
-store.dispatch(setTextFilter('second'));
-
-const state = store.getState();
-console.log(getVisibleExpenses(state.expenses, state.filters));
+store.dispatch(
+  addExpense({ description: 'Electricity bill', amount: 5000, createdAt: 2000 })
+);
+store.dispatch(
+  addExpense({ description: 'Water bill', amount: 3000, createdAt: 1500 })
+);
+store.dispatch(
+  addExpense({ description: 'Food shopping', amount: 105000, createdAt: 1500 })
+);
 
 const app = (
   <Provider store={store}>
