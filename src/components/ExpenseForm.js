@@ -3,15 +3,21 @@ import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
+import PropTypes from 'prop-types';
 
 class ExpenseForm extends Component {
-  state = {
-    description: '',
-    amount: '',
-    note: '',
-    createdAt: moment(),
-    isDatePickerFocused: false,
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      description: props.expense ? props.expense.description : '',
+      amount: props.expense ? (props.expense.amount / 100).toString() : '',
+      note: props.expense ? props.expense.note : '',
+      createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
+      isDatePickerFocused: false,
+      error: '',
+    };
+  }
 
   handleDescriptionChange = e => {
     const description = e.target.value;
@@ -21,13 +27,15 @@ class ExpenseForm extends Component {
   handleAmountChange = e => {
     const amount = e.target.value;
 
-    if (amount.match(/^\d*(\.\d{0,2})?$/)) {
+    if (!amount || amount.match(/^\d+(\.\d{0,2})?$/)) {
       this.setState(() => ({ amount }));
     }
   };
 
   handleDateChange = createdAt => {
-    this.setState(() => ({ createdAt }));
+    if (createdAt) {
+      this.setState(() => ({ createdAt }));
+    }
   };
 
   handleFocusChange = ({ focused }) => {
@@ -39,10 +47,27 @@ class ExpenseForm extends Component {
     this.setState(() => ({ note }));
   };
 
+  handleSubmit = e => {
+    e.preventDefault();
+
+    if (!this.state.description || !this.state.amount) {
+      this.setState(() => ({ error: 'Please provide description and amount' }));
+    } else {
+      this.setState(() => ({ error: '' }));
+      this.props.onSubmit({
+        description: this.state.description,
+        amount: parseFloat(this.state.amount) * 100,
+        createdAt: this.state.createdAt.valueOf(),
+        note: this.state.note,
+      });
+    }
+  };
+
   render() {
     return (
       <div>
-        <form>
+        {this.state.error && <p>{this.state.error}</p>}
+        <form onSubmit={this.handleSubmit}>
           <input
             type="text"
             placeholder="Description"
@@ -69,10 +94,16 @@ class ExpenseForm extends Component {
             value={this.state.note}
             onChange={this.handleNoteChange}
           />
+          <input type="submit" value="Add" />
         </form>
       </div>
     );
   }
 }
+
+ExpenseForm.propTypes = {
+  onSubmit: PropTypes.func,
+  expense: PropTypes.object,
+};
 
 export default ExpenseForm;

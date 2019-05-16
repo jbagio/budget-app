@@ -1,11 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import ExpenseForm from './ExpenseForm';
+import { addExpense } from '../redux/modules/expenses';
+import PropTypes from 'prop-types';
 
-const AddExpensePage = () => (
+const AddExpensePage = ({ dispatch, history }) => (
   <div>
     <h1>Add expense page</h1>
-    <ExpenseForm />
+    <ExpenseForm
+      onSubmit={expense => {
+        dispatch(addExpense(expense));
+        history.push('/');
+      }}
+    />
   </div>
 );
 
-export default AddExpensePage;
+AddExpensePage.propTypes = {
+  dispatch: PropTypes.func,
+  history: PropTypes.object,
+};
+
+export default connect()(AddExpensePage);
