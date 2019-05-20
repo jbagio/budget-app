@@ -1,10 +1,11 @@
+import moment from 'moment';
 import * as types from '../actions/actionTypes';
 
 const initialState = {
   text: '',
   sortBy: 'date',
-  startDate: null,
-  endDate: null,
+  startDate: moment().startOf('month'),
+  endDate: moment().endOf('month'),
 };
 
 export default (state = initialState, action) => {
