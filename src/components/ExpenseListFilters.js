@@ -5,7 +5,7 @@ import {
   setTextFilter,
   sortByAmount,
   sortByDate,
-} from '../redux/modules/filters';
+} from '../state/actions/filters';
 
 const ExpenseListFilters = ({ filters, dispatch }) => (
   <div>

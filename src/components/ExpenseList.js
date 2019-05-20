@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ExpenseListItem from './ExpenseListItem';
-import { getVisibleExpenses } from '../redux/selectors';
+import { getVisibleExpenses } from '../state/selectors/expenses';
 
 const ExpenseList = ({ expenses }) => {
   return (
