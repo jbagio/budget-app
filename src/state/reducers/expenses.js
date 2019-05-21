@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
         if (expense.id === action.id) {
           return {
             ...expense,
-            ...action.updatedExpense,
+            ...action.updates,
           };
         }
         return expense;

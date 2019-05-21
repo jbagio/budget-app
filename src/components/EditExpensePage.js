@@ -8,8 +8,8 @@ const EditExpensePage = ({ expense, dispatch, history }) => (
   <div>
     <ExpenseForm
       expense={expense}
-      onSubmit={updatedExpense => {
-        dispatch(editExpense(expense.id, updatedExpense));
+      onSubmit={updates => {
+        dispatch(editExpense(expense.id, updates));
         history.push('/');
       }}
     />
