@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter';
-import configureCenas from './state/store/configureStore';
+import configureStore from './state/store/configureStore';
 import * as serviceWorker from './serviceWorker';
 import 'normalize.css';
 
 import { addExpense } from './state/actions/expenses';
 
-const store = configureCenas();
+const store = configureStore();
 
 store.dispatch(
   addExpense({ description: 'Electricity bill', amount: 5000, createdAt: 2000 })

@@ -4,13 +4,16 @@ import PropTypes from 'prop-types';
 import ExpenseListItem from './ExpenseListItem';
 import { getVisibleExpenses } from '../state/selectors/expenses';
 
-const ExpenseList = ({ expenses }) => {
+export const ExpenseList = ({ expenses }) => {
   return (
     <div>
-      <h1>Expense list</h1>
-      {expenses.map(expense => (
-        <ExpenseListItem key={expense.id} expense={expense} />
-      ))}
+      {expenses.length === 0 ? (
+        <p>No expenses</p>
+      ) : (
+        expenses.map(expense => (
+          <ExpenseListItem key={expense.id} {...expense} />
+        ))
+      )}
     </div>
   );
 };
