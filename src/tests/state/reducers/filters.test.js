@@ -1,6 +1,6 @@
 import moment from 'moment';
-import filtersReducer from '../../../state/reducers/filters';
-import * as types from '../../../state/actions/actionTypes';
+import filtersReducer from '../../../redux/reducers/filters';
+import * as types from '../../../redux/actions/actionTypes';
 
 describe('Filters reducer', () => {
   it('should setup default filters state', () => {

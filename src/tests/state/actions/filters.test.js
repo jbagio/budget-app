@@ -5,8 +5,8 @@ import {
   setEndDate,
   sortByAmount,
   sortByDate,
-} from '../../../state/actions/filters';
-import * as types from '../../../state/actions/actionTypes';
+} from '../../../redux/actions/filters';
+import * as types from '../../../redux/actions/actionTypes';
 
 describe('Filters action generators', () => {
   it('should generate action object for set text filter', () => {

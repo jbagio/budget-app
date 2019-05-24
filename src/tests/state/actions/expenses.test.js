@@ -2,8 +2,8 @@ import {
   addExpense,
   editExpense,
   removeExpense,
-} from '../../../state/actions/expenses';
-import * as types from '../../../state/actions/actionTypes';
+} from '../../../redux/actions/expenses';
+import * as types from '../../../redux/actions/actionTypes';
 
 describe('Expenses action generators', () => {
   it('should generate action object for add expense', () => {

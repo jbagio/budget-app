@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { getVisibleExpenses } from '../../../state/selectors/expenses';
+import { getVisibleExpenses } from '../../../redux/selectors/expenses';
 import expenses from '../../fixtures/expenses';
 
 describe('Expenses selector', () => {

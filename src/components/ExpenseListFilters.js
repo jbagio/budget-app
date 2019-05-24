@@ -8,7 +8,7 @@ import {
   sortByDate,
   setStartDate,
   setEndDate,
-} from '../state/actions/filters';
+} from '../redux/actions/filters';
 
 class ExpenseListFilters extends Component {
   state = {

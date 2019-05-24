@@ -1,6 +1,5 @@
-import moment from 'moment';
-import expensesReducer from '../../../state/reducers/expenses';
-import * as types from '../../../state/actions/actionTypes';
+import expensesReducer from '../../../redux/reducers/expenses';
+import * as types from '../../../redux/actions/actionTypes';
 import expenses from '../../fixtures/expenses';
 
 describe('Expenses reducer', () => {
