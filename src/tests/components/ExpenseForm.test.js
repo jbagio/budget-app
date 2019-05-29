@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import moment from 'moment';
 import ExpenseForm from '../../components/ExpenseForm';
 import expenses from '../fixtures/expenses';
 
@@ -79,7 +80,26 @@ it('should not set amount on invalid input', () => {
   expect(wrapper.state('amount')).toBe('');
 });
 
-it('should call onSubmit prop', () => {
+it('should set created date', () => {
+  const date = moment();
+  const wrapper = shallow(<ExpenseForm />);
+
+  wrapper.find('withStyles(SingleDatePicker)').prop('onDateChange')(date);
+
+  expect(wrapper.state('createdAt')).toBe(date);
+});
+
+it('should set datepicker focus', () => {
+  const wrapper = shallow(<ExpenseForm />);
+
+  wrapper.find('withStyles(SingleDatePicker)').prop('onFocusChange')({
+    focused: true,
+  });
+
+  expect(wrapper.state('isDatePickerFocused')).toBe(true);
+});
+
+it('should call onSubmit prop for valid form submission', () => {
   const handler = jest.fn();
   const wrapper = shallow(
     <ExpenseForm expense={expenses[0]} onSubmit={handler} />
@@ -87,7 +107,7 @@ it('should call onSubmit prop', () => {
 
   wrapper.find('form').simulate('submit', { preventDefault: () => {} });
 
-  const { description, amount, note, createdAt, ...id } = expenses[0];
+  const { description, amount, note, createdAt } = expenses[0];
 
   expect(wrapper.state('error')).toBe('');
   expect(handler).toHaveBeenLastCalledWith({

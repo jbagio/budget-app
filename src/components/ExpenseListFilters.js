@@ -10,18 +10,30 @@ import {
   setEndDate,
 } from '../redux/actions/filters';
 
-class ExpenseListFilters extends Component {
+export class ExpenseListFilters extends Component {
   state = {
-    isDatePickerFocused: null,
+    focusedDatePicker: null,
+  };
+
+  handleTextChange = e => {
+    this.props.onSetTextFilter(e.target.value);
+  };
+
+  handleSortByChange = e => {
+    if (e.target.value === 'date') {
+      this.props.onSortByDate();
+    } else if (e.target.value === 'amount') {
+      this.props.onSortByAmount();
+    }
   };
 
   handleDatesChange = ({ startDate, endDate }) => {
-    this.props.dispatch(setStartDate(startDate));
-    this.props.dispatch(setEndDate(endDate));
+    this.props.onSetStartDate(startDate);
+    this.props.onSetEndDate(endDate);
   };
 
   handleFocusChange = focused => {
-    this.setState(() => ({ isDatePickerFocused: focused }));
+    this.setState(() => ({ focusedDatePicker: focused }));
   };
 
   render() {
@@ -30,17 +42,11 @@ class ExpenseListFilters extends Component {
         <input
           type="text"
           defaultValue={this.props.filters.text}
-          onChange={e => this.props.dispatch(setTextFilter(e.target.value))}
+          onChange={this.handleTextChange}
         />
         <select
           value={this.props.filters.sortBy}
-          onChange={e => {
-            if (e.target.value === 'date') {
-              this.props.dispatch(sortByDate());
-            } else if (e.target.value === 'amount') {
-              this.props.dispatch(sortByAmount());
-            }
-          }}
+          onChange={this.handleSortByChange}
         >
           <option value="date">Date</option>
           <option value="amount">Amount</option>
@@ -51,7 +57,7 @@ class ExpenseListFilters extends Component {
           endDate={this.props.filters.endDate}
           endDateId={'endDateId'}
           onDatesChange={this.handleDatesChange}
-          focusedInput={this.state.isDatePickerFocused}
+          focusedInput={this.state.focusedDatePicker}
           onFocusChange={this.handleFocusChange}
           numberOfMonths={1}
           showClearDates={true}
@@ -64,11 +70,26 @@ class ExpenseListFilters extends Component {
 
 ExpenseListFilters.propTypes = {
   filters: PropTypes.object,
-  dispatch: PropTypes.func,
+  onSetTextFilter: PropTypes.func,
+  onSortByDate: PropTypes.func,
+  onSortByAmount: PropTypes.func,
+  onSetStartDate: PropTypes.func,
+  onSetEndDate: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
   filters: state.filters,
 });
 
-export default connect(mapStateToProps)(ExpenseListFilters);
+const mapDispatchToProps = dispatch => ({
+  onSetTextFilter: text => dispatch(setTextFilter(text)),
+  onSortByDate: () => dispatch(sortByDate()),
+  onSortByAmount: () => dispatch(sortByAmount()),
+  onSetStartDate: date => dispatch(setStartDate(date)),
+  onSetEndDate: date => dispatch(setEndDate(date)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ExpenseListFilters);
