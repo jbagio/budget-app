@@ -7,20 +7,13 @@ import * as serviceWorker from './serviceWorker';
 import 'normalize.css';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
+import numbro from 'numbro';
+import languages from 'numbro/dist/languages.min';
 
-import { addExpense } from './redux/actions/expenses';
+Object.values(languages).forEach(lang => numbro.registerLanguage(lang));
+numbro.setLanguage('pt-PT');
 
 const store = configureStore();
-
-store.dispatch(
-  addExpense({ description: 'Electricity bill', amount: 5000, createdAt: 2000 })
-);
-store.dispatch(
-  addExpense({ description: 'Water bill', amount: 3000, createdAt: 1500 })
-);
-store.dispatch(
-  addExpense({ description: 'Food shopping', amount: 105000, createdAt: 1500 })
-);
 
 const app = (
   <Provider store={store}>

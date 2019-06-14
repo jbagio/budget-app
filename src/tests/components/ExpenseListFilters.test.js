@@ -19,7 +19,7 @@ beforeEach(() => {
   onSetEndDate = jest.fn();
   wrapper = shallow(
     <ExpenseListFilters
-      filters={filters}
+      filters={defaultFilters}
       onSetTextFilter={onSetTextFilter}
       onSortByDate={onSortByDate}
       onSortByAmount={onSortByAmount}
@@ -48,6 +48,9 @@ it('should handle onSetTextFilter prop', () => {
 });
 
 it('should handle onSortByDate prop', () => {
+  //sort by amount first
+  wrapper.setProps({ filters });
+
   wrapper.find('select').simulate('change', {
     target: { value: 'date' },
   });

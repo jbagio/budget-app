@@ -62,6 +62,7 @@ export class ExpenseListFilters extends Component {
           numberOfMonths={1}
           showClearDates={true}
           isOutsideRange={() => false}
+          displayFormat={'DD/MM/YYYY'}
         />
       </div>
     );
