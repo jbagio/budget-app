@@ -32,9 +32,8 @@ yarn-error.log*
 # yarn Integrity file
 .yarn-integrity
 
-# local env files
-.env.local
-.env.*.local
+# env files
+.env*
 
 # next.js build output
 .next

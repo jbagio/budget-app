@@ -9,6 +9,7 @@ import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import numbro from 'numbro';
 import languages from 'numbro/dist/languages.min';
+import './firebase/firebase';
 
 Object.values(languages).forEach(lang => numbro.registerLanguage(lang));
 numbro.setLanguage('pt-PT');
