@@ -15,7 +15,7 @@
     "lint:fix": "npx eslint . --fix"
   },
   "dependencies": {
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "node-sass": "^4.12.0",
     "normalize.css": "^8.0.1",
     "numbro": "^2.1.2",
